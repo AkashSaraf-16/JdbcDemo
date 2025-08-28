@@ -16,16 +16,20 @@ public class DemoJdbc{
         // Step 5: Create statement
         Statement st = conn.createStatement();
 
-        String query = "select * from student";
+//        String query = "select * from student";
+//        String query = "insert into student values (4,'Raman', 87)" ;
+//        String query = "update student set marks=89 where sid=2" ;
+        String query = "delete from student where sid=3" ;
 
         //Step 6: Execute Statement
-        ResultSet rs = st.executeQuery(query);
-
-        while(rs.next()){
-            String name = rs.getString("name");
-            int marks = rs.getInt("marks");
-            System.out.println(name+ " - " +marks);
-        }
+//        ResultSet rs = st.executeQuery(query);
+        boolean status = st.execute(query);
+        System.out.println(status);
+//        while(rs.next()){
+//            String name = rs.getString("name");
+//            int marks = rs.getInt("marks");
+//            System.out.println(name+ " - " +marks);
+//        }
 
         conn.close();
 
