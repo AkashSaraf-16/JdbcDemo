@@ -14,17 +14,25 @@ public class DemoJdbc{
         Connection conn = DriverManager.getConnection(url,usrName, pass);
 
         // Step 5: Create statement
-        Statement st = conn.createStatement();
+//        Statement st = conn.createStatement();
+        // Prepared Statement
+        String preparedSql = "insert into student values(?, ?, ?)";
+        PreparedStatement prStmnt = conn.prepareStatement(preparedSql);
+        prStmnt.setInt(1, 3);
+        prStmnt.setString(2, "Raja");
+        prStmnt.setInt(3, 95);
 
 //        String query = "select * from student";
 //        String query = "insert into student values (4,'Raman', 87)" ;
 //        String query = "update student set marks=89 where sid=2" ;
-        String query = "delete from student where sid=3" ;
+//        String query = "delete from student where sid=3" ;
 
         //Step 6: Execute Statement
 //        ResultSet rs = st.executeQuery(query);
-        boolean status = st.execute(query);
+//        boolean status = st.execute(query);
+        boolean status = prStmnt.execute();
         System.out.println(status);
+
 //        while(rs.next()){
 //            String name = rs.getString("name");
 //            int marks = rs.getInt("marks");
